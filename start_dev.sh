@@ -1,1 +1,2 @@
-cd web && npm run start:dev
+cd api && npm run start &
+cd web && npm run start:dev && cd ..
