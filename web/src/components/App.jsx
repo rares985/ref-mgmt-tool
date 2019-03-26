@@ -4,6 +4,7 @@ import Tab from "react-bootstrap/Tab";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Login from "./Login";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -17,11 +18,15 @@ class App extends React.Component {
             <Col xs={1} />
           </Row>
         </Container>
-        <Tabs defaultActiveKey="Stiri" className="mb-4" id="noanim-tab-example">
-          <Tab eventKey="Stiri" title="Stiri" />
+        <Tabs defaultActiveKey="Login" className="mb-4" id="noanim-tab-example">
+          <Tab eventKey="Stiri" title="Stiri">
+            Stiri
+          </Tab>
           <Tab eventKey="delegari" title="Delegari" />
           <Tab eventKey="Arbitri" title="Arbitri" />
-          <Tab eventKey="Login" title="Login" />
+          <Tab eventKey="Login" title="Login">
+            <Login />
+          </Tab>
           <Tab eventKey="Help" title="Help">
             Help
           </Tab>
