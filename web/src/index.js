@@ -1,13 +1,36 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import store from "./store/index";
-import App from "./components/App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ConnectedRouter } from "connected-react-router";
+import { Route, Switch } from "react-router";
+import Login from "./components/Login/Login";
+import Navbar from "./components/Navbar/Navbar";
+import Matches from "./components/Matches/Matches";
+import Referees from "./components/Referees/Referees";
+import Home from "./components/Home/Home";
+
+import configureStore, { history } from "./store/index";
+
+const store = configureStore();
+
+const renderNavbarBeforeComponent = component => {
+  <React.Fragment>
+    <Navbar />
+    {component}
+  </React.Fragment>;
+};
 
 render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/matches" component={Matches} />
+        <Route exact path="/referees" component={Referees} />
+      </Switch>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("app")
 );
