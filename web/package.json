@@ -10,12 +10,6 @@
   "keywords": [],
   "author": "Rares Mateizer <raresmateizer@gmail.com>",
   "license": "MIT",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
