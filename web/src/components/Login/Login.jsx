@@ -12,8 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEyeSlash,
   faEye,
-  faPaperPlane,
-  faPlay
+  faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 
 import { SHA3 } from "sha3";

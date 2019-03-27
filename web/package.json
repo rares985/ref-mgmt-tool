@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "start:build": "webpack-dev-server --config ./webpack.config.js --mode production"
+    "start:dev": "webpack-dev-server --config ./webpack.config.dev.js",
+    "start:build": "webpack-dev-server --config ./webpack.config.prod.js"
   },
   "keywords": [],
   "author": "Rares Mateizer <raresmateizer@gmail.com>",

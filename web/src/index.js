@@ -14,13 +14,6 @@ import configureStore, { history } from "./store/index";
 
 const store = configureStore();
 
-const renderNavbarBeforeComponent = component => {
-  <React.Fragment>
-    <Navbar />
-    {component}
-  </React.Fragment>;
-};
-
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

@@ -2,6 +2,7 @@ const webpack = require("webpack");
 var OpenBrowserPlugin = require("open-browser-webpack-plugin");
 
 module.exports = {
+  mode: "development",
   entry: "./src/index.js",
   module: {
     rules: [
