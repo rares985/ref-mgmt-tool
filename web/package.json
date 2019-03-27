@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start:dev": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start:build": "webpack-dev-server --config ./webpack.config.js --mode production"
   },
   "keywords": [],
   "author": "Rares Mateizer <raresmateizer@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
@@ -22,11 +24,18 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "autoprefixer": "^9.5.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "connected-react-router": "^6.3.2",
     "css-loader": "^2.1.1",
+    "history": "^4.9.0",
     "jquery": "^3.3.1",
+    "lodash": "^4.17.11",
+    "mdbreact": "^4.11.1",
     "popper.js": "^1.14.7",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
@@ -34,6 +43,7 @@
     "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.5",
     "react-redux": "^6.0.1",
+    "react-router": "^5.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",

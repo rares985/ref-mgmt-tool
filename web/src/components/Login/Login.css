@@ -1,0 +1,13 @@
+.form-control {
+  box-shadow: none !important;
+  border: 1px solid #ced4da !important;
+}
+
+.passwordInput {
+  border-right: none !important;
+}
+
+.hideShowButton {
+  border: 1px solid #ced4da !important;
+  border-left: none !important;
+}
