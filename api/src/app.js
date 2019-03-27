@@ -5,6 +5,18 @@ var mysql = require("mysql");
 var app = express();
 var router = express.Router();
 var sql = require("./db");
+var cors = require("cors");
+
+var whitelist = ["http://example.com"];
+var corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not Allowed by CORS"));
+    }
+  }
+};
 
 var port = process.env.API_PORT || 3001;
 
@@ -33,6 +45,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(cors(corsOptions));
+
 router.get("/", function(req, res) {
   res.json({
     message: "api initialized"
@@ -40,6 +54,9 @@ router.get("/", function(req, res) {
 });
 
 router.route("/login").get(function(req, res, next) {
+  console.log(req.body.email);
+  console.log(req.body.password);
+
   sql.query("SELECT * FROM users", function(err, dbres) {
     if (err) {
       console.log("QUERY_ERROR : " + err);

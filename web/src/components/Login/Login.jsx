@@ -17,8 +17,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { SHA3 } from "sha3";
 import "./Login.css";
+import { connect } from "react-redux";
+import { LoginUser } from "../../actions/index";
 
 library.add(faEye, faEyeSlash, faPaperPlane);
+
+const mapStateToProps = state => ({
+  loading: state.loading,
+  error: state.error
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLoginUser: () => {
+    dispatch(LoginUser());
+  }
+});
 
 class Login extends React.Component {
   constructor(props) {
@@ -43,20 +56,22 @@ class Login extends React.Component {
   }
 
   handleChange = event => {
+    event.preventDefault();
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
   handleSubmit = event => {
+    event.preventDefault();
+    event.stopPropagation();
     let sha3 = new SHA3(256);
     let request = {
       email: this.state.email,
       password: sha3.update(this.state.password).digest("hex")
     };
-    console.log(request);
-    event.preventDefault();
-    event.stopPropagation();
+
+    this.props.onLoginUser(request);
   };
 
   handleShowHide = event => {
@@ -137,4 +152,7 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
