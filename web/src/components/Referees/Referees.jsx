@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 
-class Referees extends React.Component {
+class Referees extends Component {
   render() {
     return (
       <React.Fragment>

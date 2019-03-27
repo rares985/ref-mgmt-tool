@@ -8,17 +8,17 @@ import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
 import Navbar from "../Navbar/Navbar";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEyeSlash,
   faEye,
-  faPaperPlane,
-  faPlay
+  faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
-
 import { SHA3 } from "sha3";
-
 import "./Login.css";
+
+library.add(faEye, faEyeSlash, faPaperPlane);
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,8 +29,6 @@ class Login extends React.Component {
       password: "",
       passwordType: "password"
     };
-
-    this.hash = new SHA3(256);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,9 +49,10 @@ class Login extends React.Component {
   };
 
   handleSubmit = event => {
+    let sha3 = new SHA3(256);
     let request = {
       email: this.state.email,
-      password: this.hash.update(this.state.password).digest("hex")
+      password: sha3.update(this.state.password).digest("hex")
     };
     console.log(request);
     event.preventDefault();

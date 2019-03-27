@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch } from "react-router";
 import Login from "./components/Login/Login";
-import Navbar from "./components/Navbar/Navbar";
 import Matches from "./components/Matches/Matches";
 import Referees from "./components/Referees/Referees";
 import Home from "./components/Home/Home";
@@ -13,13 +12,6 @@ import Home from "./components/Home/Home";
 import configureStore, { history } from "./store/index";
 
 const store = configureStore();
-
-const renderNavbarBeforeComponent = component => {
-  <React.Fragment>
-    <Navbar />
-    {component}
-  </React.Fragment>;
-};
 
 render(
   <Provider store={store}>
