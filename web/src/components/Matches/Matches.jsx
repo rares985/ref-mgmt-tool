@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
+import NavigationBar from "../NavigationBar/NavigationBar";
 
 class Matches extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
+        <NavigationBar />
         MATCHES PAGE
       </React.Fragment>
     );

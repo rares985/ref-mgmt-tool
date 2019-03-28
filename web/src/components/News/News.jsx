@@ -1,15 +1,15 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
+import NavigationBar from "../NavigationBar/NavigationBar";
 
-class Home extends React.Component {
+class News extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
+        <NavigationBar />
         Only serves as home...no other uses, really.
       </React.Fragment>
     );
   }
 }
 
-export default Home;
+export default News;

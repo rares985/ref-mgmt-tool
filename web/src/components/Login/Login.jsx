@@ -6,7 +6,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
-import Navbar from "../Navbar/Navbar";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import { PropTypes } from "prop-types";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -85,7 +86,7 @@ class Login extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
+        <NavigationBar />
         <Container>
           <Row>
             <Col md="6">
@@ -151,6 +152,12 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  onLoginUser: PropTypes.func.isRequired
+};
 
 export default connect(
   mapStateToProps,

@@ -7,7 +7,7 @@ import { Route, Switch } from "react-router";
 import Login from "./components/Login/Login";
 import Matches from "./components/Matches/Matches";
 import Referees from "./components/Referees/Referees";
-import Home from "./components/Home/Home";
+import News from "./components/News/News";
 
 import configureStore, { history } from "./store/index";
 
@@ -17,7 +17,7 @@ render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={News} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/matches" component={Matches} />
         <Route exact path="/referees" component={Referees} />

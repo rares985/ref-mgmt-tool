@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../NavigationBar/NavigationBar";
 
 class Referees extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
+        <NavigationBar />
         REFEREES PAGE
       </React.Fragment>
     );
