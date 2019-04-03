@@ -1,12 +1,58 @@
 import React from "react";
-import NavigationBar from "../NavigationBar/NavigationBar";
+import Grid from "@material-ui/core/Grid";
+import chunk from "lodash/chunk";
+import NewsArticle from "./NewsArticle/NewsArticle";
 
 class News extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      displayedPerRow: 3,
+      articles: [
+        {
+          title: "Article 1",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          summary: "Article 1 content",
+          date_added: "September 17, 2019"
+        },
+        {
+          title: "Article 2",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          summary: "Article 2 content",
+          date_added: "September 17, 2019"
+        },
+        {
+          title: "Article 3",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          summary: "Article 3 content",
+          date_added: "September 17, 2019"
+        },
+        {
+          title: "Article 4",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          summary: "Article 4 content",
+          date_added: "September 17, 2019"
+        }
+      ]
+    };
+  }
   render() {
+    let itemSize = ~~(12 / this.state.displayedPerRow);
+    console.log(itemSize);
+
+    // TODO: Use different value for key, not index
     return (
       <React.Fragment>
-        <NavigationBar />
-        Only serves as home...no other uses, really.
+        <Grid container spacing={24}>
+          {this.state.articles.map((item, key) => (
+            <NewsArticle size={itemSize} article={item} key={key} />
+          ))}
+        </Grid>
       </React.Fragment>
     );
   }

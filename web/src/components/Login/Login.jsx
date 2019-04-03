@@ -6,7 +6,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
-import NavigationBar from "../NavigationBar/NavigationBar";
 import { PropTypes } from "prop-types";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -22,17 +21,6 @@ import { connect } from "react-redux";
 import { LoginUser } from "../../actions/index";
 
 library.add(faEye, faEyeSlash, faPaperPlane);
-
-const mapStateToProps = state => ({
-  loading: state.loading,
-  error: state.error
-});
-
-const mapDispatchToProps = dispatch => ({
-  onLoginUser: () => {
-    dispatch(LoginUser());
-  }
-});
 
 class Login extends React.Component {
   constructor(props) {
@@ -86,7 +74,6 @@ class Login extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <NavigationBar />
         <Container>
           <Row>
             <Col md="6">
@@ -153,13 +140,4 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.string,
-  onLoginUser: PropTypes.func.isRequired
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default Login;
