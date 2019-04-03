@@ -30,7 +30,7 @@ const styles = theme => ({
   }
 });
 
-class ScrollableTabsButtonAuto extends React.Component {
+class App extends React.Component {
   state = {
     value: 0
   };
@@ -85,8 +85,8 @@ class ScrollableTabsButtonAuto extends React.Component {
   }
 }
 
-ScrollableTabsButtonAuto.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ScrollableTabsButtonAuto);
+export default withStyles(styles)(App);

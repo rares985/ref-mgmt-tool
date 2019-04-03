@@ -11,6 +11,7 @@ class News extends React.Component {
       displayedPerRow: 3,
       articles: [
         {
+          author: "Alin Mateizer",
           title: "Article 1",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -18,6 +19,7 @@ class News extends React.Component {
           date_added: "September 17, 2019"
         },
         {
+          author: "Rares",
           title: "Article 2",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -25,6 +27,7 @@ class News extends React.Component {
           date_added: "September 17, 2019"
         },
         {
+          author: "Daniel",
           title: "Article 3",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -32,6 +35,7 @@ class News extends React.Component {
           date_added: "September 17, 2019"
         },
         {
+          author: "Giancarlo De Carlo",
           title: "Article 4",
           content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -45,7 +49,7 @@ class News extends React.Component {
     let itemSize = ~~(12 / this.state.displayedPerRow);
     console.log(itemSize);
 
-    // TODO: Use different value for key, not index
+    // TODO: Use different value for key, not index @est(1h)
     return (
       <React.Fragment>
         <Grid container spacing={24}>

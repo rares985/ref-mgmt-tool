@@ -62,11 +62,17 @@ class NewsArticle extends Component {
   render() {
     const { article, size } = this.props;
 
+    //TODO: Beautify this somehow..it looks horrible @est(30m) @low
+    let avatar_name = article.author.match(/\b\w/g) || [];
+    avatar_name = (
+      (avatar_name.shift() || "") + (avatar_name.pop() || "")
+    ).toUpperCase();
+
     return (
       <Grid item xs={size}>
         <Card>
           <CardHeader
-            avatar={<Avatar aria-label={article.author} />}
+            avatar={<Avatar aria-label={article.author}>{avatar_name}</Avatar>}
             title={article.title}
             subheader={article.date_added}
           />
