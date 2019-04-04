@@ -1,37 +1,49 @@
 const webpack = require("webpack");
-var OpenBrowserPlugin = require("open-browser-webpack-plugin");
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  /* Entry point  */
   entry: "./src/index.js",
+
+  /* Where the bundle.js file will be created */
+  output: {
+    path: __dirname + "/dist",
+    publicPath: "/",
+    filename: "bundle.js"
+  },
+
   module: {
     rules: [
+      /* Transpile To <= ES5 */
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: path.resolve(__dirname, "node_modules"),
         use: ["babel-loader"]
       },
+
+      /* Load CSS */
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       }
     ]
   },
+
   resolve: {
     extensions: ["*", ".js", ".jsx"]
   },
-  output: {
-    path: __dirname + "/dist",
-    publicPath: "/",
-    filename: "bundle.js"
-  },
+
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: "http://localhost:8080" })
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "./dist/index.html",
+      inject: true
+    })
   ],
   devServer: {
     inline: true,
-    contentBase: "./dist",
+    contentBase: "dist/",
     disableHostCheck: true,
     historyApiFallback: true,
     hot: true,

@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-import { connectRouter } from "connected-react-router";
 import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
@@ -117,8 +115,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default history =>
-  combineReducers({
-    router: connectRouter(history),
-    rootReducer
-  });
+export default rootReducer;
