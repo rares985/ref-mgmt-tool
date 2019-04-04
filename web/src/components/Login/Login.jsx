@@ -1,26 +1,53 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import InputGroup from "react-bootstrap/InputGroup";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import MaskableTextField from "./MaskableTextField/MaskableTextField";
+import withStyles from "@material-ui/core/styles/withStyles";
+import SHA3 from "sha3";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEyeSlash,
-  faEye,
-  faPaperPlane
-} from "@fortawesome/free-solid-svg-icons";
-import { SHA3 } from "sha3";
-import "./Login.css";
-import { connect } from "react-redux";
-import { LoginUser } from "../../actions/index";
-
-library.add(faEye, faEyeSlash, faPaperPlane);
+const styles = theme => ({
+  main: {
+    width: "auto",
+    display: "block", // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: "auto",
+      marginRight: "auto"
+    }
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
+  },
+  avatar: {
+    margin: theme.spacing.unit,
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing.unit
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3
+  }
+});
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,27 +56,12 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      passwordType: "password"
+      maskedPassword: true
     };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleShowHide = this.handleShowHide.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-
-  validateForm() {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    var inputsNotEmpty =
-      this.state.email.length > 0 && this.state.password.length > 0;
-    return re.test(String(this.state.email).toLowerCase()) && inputsNotEmpty;
-  }
-
-  handleChange = event => {
-    event.preventDefault();
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -59,85 +71,72 @@ class Login extends React.Component {
       email: this.state.email,
       password: sha3.update(this.state.password).digest("hex")
     };
-
-    this.props.onLoginUser(request);
+    console.log(request);
   };
 
-  handleShowHide = event => {
+  handleChange = event => {
     event.preventDefault();
-    event.stopPropagation();
     this.setState({
-      passwordType: this.state.passwordType === "input" ? "password" : "input"
+      [event.currentTarget.id]: event.currentTarget.value
     });
   };
 
   render() {
+    const { classes } = this.props;
+    const { email, password } = this.state;
+
     return (
-      <React.Fragment>
-        <Container>
-          <Row>
-            <Col md="6">
-              <Card border="dark">
-                <Card.Header>
-                  <h4 className="h4-responsive">Logare</h4>
-                </Card.Header>
-                <Card.Body>
-                  <Form
-                    onSubmit={this.handleSubmit}
-                    validated={this.validateForm()}
-                  >
-                    <Form.Group controlId="email">
-                      <Form.Label>E-mail</Form.Label>
-                      <Form.Control
-                        autoFocus
-                        type="email"
-                        placeholder="Introduceti e-mail..."
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        className="inputLogin"
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="password">
-                      <Form.Label>Parola</Form.Label>
-                      <InputGroup className="mb-3">
-                        <Form.Control
-                          type={this.state.passwordType}
-                          placeholder="Introduceti parola..."
-                          value={this.state.password}
-                          onChange={this.handleChange}
-                          className="inputLogin passwordInput"
-                        />
-                        <InputGroup.Append>
-                          <Button
-                            variant="outline-dark"
-                            onClick={this.handleShowHide}
-                            className="hideShowButton"
-                          >
-                            <FontAwesomeIcon
-                              icon={
-                                this.state.passwordType === "password"
-                                  ? faEye
-                                  : faEyeSlash
-                              }
-                            />
-                          </Button>
-                        </InputGroup.Append>
-                      </InputGroup>
-                    </Form.Group>
-                    <Button variant="outline-dark" type="submit">
-                      Logare
-                      <FontAwesomeIcon icon={faPaperPlane} className="ml-2" />
-                    </Button>
-                  </Form>
-                </Card.Body>
-                <Card.Footer />
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </React.Fragment>
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Logare
+          </Typography>
+          <form className={classes.form} onSubmit={e => this.handleSubmit(e)}>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input
+                onChange={e => this.handleChange(e)}
+                id="email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <MaskableTextField
+                id="password"
+                label="Password*"
+                name="password"
+                value={password}
+                onChange={e => this.handleChange(e)}
+              />
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Logare
+            </Button>
+          </form>
+        </Paper>
+      </main>
     );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Login);

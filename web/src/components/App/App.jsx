@@ -10,6 +10,11 @@ import Matches from "../Matches/Matches";
 import Referees from "../Referees/Referees";
 import News from "../News/News";
 
+const NEWS_PAGE_ID = 0;
+const REFEREES_PAGE_ID = 1;
+const MATCHES_PAGE_ID = 2;
+const LOGIN_PAGE_ID = 3;
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -32,7 +37,7 @@ const styles = theme => ({
 
 class App extends React.Component {
   state = {
-    value: 0
+    value: LOGIN_PAGE_ID
   };
 
   handleChange = (event, value) => {

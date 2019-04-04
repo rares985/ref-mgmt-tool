@@ -4,7 +4,6 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   /* Entry point  */
@@ -53,23 +52,5 @@ module.exports = {
     extensions: ["*", ".js", ".jsx"]
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      filename: "./dist/index.html",
-      inject: true
-    }),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("production")
-    }),
-    new BundleAnalyzerPlugin()
-  ],
-  devServer: {
-    inline: true,
-    contentBase: "dist/",
-    disableHostCheck: true,
-    historyApiFallback: true,
-    hot: true,
-    port: 8080
-  }
+  plugins: [new HtmlWebpackPlugin(), new BundleAnalyzerPlugin()]
 };
