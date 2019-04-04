@@ -1,25 +1,32 @@
 # Referee Management Tool
 
-Application for organizing and allocating referees to matches
+This project is a website whose purpose which allows for the organization and
+allocation of referees to matches.
 
-## Components
+## Project structure
+
+This repository contains both the front-end and the back-end of the application.
+The former is included in the `web/` folder, whereas the latter is included in the `api/` folder.
+Both folders are npm projects, each with their own separate `package.json` file.
+
+## Front-end
 
 This application consists of 4 pages: News, Referees, Matches and Login
 
-### News
+#### News Component
 
 This page is a simple news/post page, where items are displayed as Google-style cards
 
-### Referees
+#### Referees Component
 
 This is a query page, where one can search for various referees in the database using
 the dropdown queries provided.
 
-### Matches
+#### Matches Component
 
 This page is also a querying one, where searches can be made using the dropdown queries provided.
 
-### Login
+#### Login Component
 
 Simple login page, transforms into "My Profile" after a successful login
 
@@ -29,17 +36,18 @@ Simple login page, transforms into "My Profile" after a successful login
 
 ##### Extensions
 
-1. Beautify
-2. Bracket Pair Colorizer
-3. ESLint
-4. Import Cost
-5. indent-rainbow
-6. TODO Highlight
-7. Todo+
+1. **Bracket Pair Colorizer** - colorizes bracket pairs
+2. **ESLint** - Linter for ES5/6
+3. **Import Cost** - Show the import size in bytes next to the import
+4. **indent-rainbow** - colorizes indentation to make it easier to see
+5. **TODO Highlight** - highlights constructs like `//TODO:` and `//FIXME:`
+6. **Todo+** - gathers all constructs above together and adds some neat functionalities: time estimates, statuses etc
+7. **Markdown Preview Enhanced** - Previews a Markdown file
+8. **Markdown All in One** - Tools to help write a .MD file
 
 #### Webpack
 
-Webpack was used for _bundling_ and minimizing the code _minimizing_
+Webpack was used for _bundling_ and _minimizing_ the code
 Two configuration files were used: `webpack.config.dev.js` and `webpack.config.prod.js`, the former
 for development, and the latter for production.
 
@@ -178,4 +186,22 @@ module.exports = {
     port: 8080
   }
 };
+```
+
+#### Babel
+
+For transpiling from ES6 to <= ES5, Babel was used. Babel does not work out of the box with react and webpack,
+so it also needs a configuration file, `.babelrc`, which exists in the root folder of the project (in our case, `web/`)
+because that is the front-end of our application. Below is the `.babelrc` file:
+
+```javascript
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
+}
 ```
