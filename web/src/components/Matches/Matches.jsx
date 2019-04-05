@@ -1,14 +1,6 @@
-import React from "react";
-
-class Matches extends React.Component {
-  constructor(props) {
-    super(props);
-    //TODO: Implement
-  }
-
-  render() {
-    return <React.Fragment>MATCHES PAGE</React.Fragment>;
-  }
+// TODO: Implement
+function Matches() {
+  return "MATCHES_PAGE";
 }
 
 export default Matches;

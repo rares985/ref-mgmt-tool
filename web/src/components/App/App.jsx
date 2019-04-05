@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
+import { BrowserRouter } from "react-router-dom";
 import Login from "../Login/Login";
 import Matches from "../Matches/Matches";
 import Referees from "../Referees/Referees";
@@ -49,43 +50,45 @@ class App extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-            scrollButtons="auto"
-          >
-            <Tab label="Stiri" />
-            <Tab label="Arbitri" />
-            <Tab label="Meciuri" />
-            <Tab label="Login" />
-          </Tabs>
-        </AppBar>
-        {value === 0 && (
-          <TabContainer>
-            <News />
-          </TabContainer>
-        )}
-        {value === 1 && (
-          <TabContainer>
-            <Referees />
-          </TabContainer>
-        )}
-        {value === 2 && (
-          <TabContainer>
-            <Matches />
-          </TabContainer>
-        )}
-        {value === 3 && (
-          <TabContainer>
-            <Login />
-          </TabContainer>
-        )}
-      </div>
+      <BrowserRouter>
+        <div className={classes.root}>
+          <AppBar position="static" color="default">
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="fullWidth"
+              scrollButtons="auto"
+            >
+              <Tab label="Stiri" />
+              <Tab label="Arbitri" />
+              <Tab label="Meciuri" />
+              <Tab label="Login" />
+            </Tabs>
+          </AppBar>
+          {value === NEWS_PAGE_ID && (
+            <TabContainer>
+              <News />
+            </TabContainer>
+          )}
+          {value === REFEREES_PAGE_ID && (
+            <TabContainer>
+              <Referees />
+            </TabContainer>
+          )}
+          {value === MATCHES_PAGE_ID && (
+            <TabContainer>
+              <Matches />
+            </TabContainer>
+          )}
+          {value === LOGIN_PAGE_ID && (
+            <TabContainer>
+              <Login />
+            </TabContainer>
+          )}
+        </div>
+      </BrowserRouter>
     );
   }
 }

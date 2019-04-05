@@ -1,8 +1,9 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import chunk from "lodash/chunk";
 import NewsArticle from "./NewsArticle/NewsArticle";
+import uuid from "uuid";
 
+const COL_SIZE = 12;
 class News extends React.Component {
   constructor(props) {
     super(props);
@@ -45,16 +46,17 @@ class News extends React.Component {
       ]
     };
   }
+
   render() {
-    let itemSize = ~~(12 / this.state.displayedPerRow);
-    console.log(itemSize);
+    const { articles, displayedPerRow } = this.state;
+    const itemSize = Math.floor(COL_SIZE / displayedPerRow);
 
     // TODO: Use different value for key, not index @est(1h)
     return (
       <React.Fragment>
         <Grid container spacing={24}>
-          {this.state.articles.map((item, key) => (
-            <NewsArticle size={itemSize} article={item} key={key} />
+          {articles.map((item, key) => (
+            <NewsArticle size={itemSize} article={item} key={uuid()} />
           ))}
         </Grid>
       </React.Fragment>

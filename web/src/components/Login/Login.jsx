@@ -4,16 +4,14 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import MaskableTextField from "./MaskableTextField/MaskableTextField";
 import withStyles from "@material-ui/core/styles/withStyles";
 import SHA3 from "sha3";
+import MaskableTextField from "./MaskableTextField/MaskableTextField";
 
 const styles = theme => ({
   main: {
@@ -53,8 +51,7 @@ class Login extends React.Component {
 
     this.state = {
       email: "",
-      password: "",
-      maskedPassword: true
+      password: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,12 +61,13 @@ class Login extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     event.stopPropagation();
-    let sha3 = new SHA3(256);
+    const sha3 = new SHA3(256);
+    const { email, password } = this.state;
+
     let request = {
-      email: this.state.email,
-      password: sha3.update(this.state.password).digest("hex")
+      email: email,
+      password: sha3.update(password).digest("hex")
     };
-    console.log(request);
   };
 
   handleChange = event => {

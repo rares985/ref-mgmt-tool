@@ -25,11 +25,13 @@ class MaskableTextField extends Component {
   }
 
   togglePasswordMask = () => {
+    const { isPasswordMasked } = this.state;
+
     setTimeout(() => {
-      if (!this.state.isPasswordMasked) {
-        this.setState(prevState => ({
+      if (!isPasswordMasked) {
+        this.setState({
           isPasswordMasked: true
-        }));
+        });
       }
     }, HIDE_PASSWORD_DELAY_MS);
 
@@ -45,7 +47,7 @@ class MaskableTextField extends Component {
     return (
       <TextField
         type={isPasswordMasked ? "password" : "text"}
-        {...this.props}
+        {...classes}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
