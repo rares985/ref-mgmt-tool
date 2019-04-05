@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   /* Entry point  */
-  entry: "./src/index.js",
+  entry: "./src/index.jsx",
 
   /* Where the bundle.js file will be created */
   output: {
