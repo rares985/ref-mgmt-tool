@@ -64,9 +64,7 @@ class NewsArticle extends Component {
 
     //TODO: Beautify this somehow..it looks horrible @est(30m) @low
     let avatar_name = article.author.match(/\b\w/g) || [];
-    avatar_name = (
-      (avatar_name.shift() || "") + (avatar_name.pop() || "")
-    ).toUpperCase();
+    avatar_name = ((avatar_name.shift() || "") + (avatar_name.pop() || "")).toUpperCase();
 
     return (
       <Grid item xs={size}>

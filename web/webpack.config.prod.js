@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -22,7 +21,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: path.resolve(__dirname, "node_modules"),
-        use: ["babel-loader"]
+        use: ["babel-loader", "eslint-loader"]
       },
 
       /* Load CSS */

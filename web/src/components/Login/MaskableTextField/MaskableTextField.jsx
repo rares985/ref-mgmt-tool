@@ -49,10 +49,7 @@ class MaskableTextField extends Component {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <RemoveRedEye
-                className={classes.eye}
-                onClick={() => this.togglePasswordMask()}
-              />
+              <RemoveRedEye className={classes.eye} onClick={() => this.togglePasswordMask()} />
             </InputAdornment>
           )
         }}

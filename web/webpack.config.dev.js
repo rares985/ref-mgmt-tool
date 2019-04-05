@@ -15,11 +15,11 @@ module.exports = {
 
   module: {
     rules: [
-      /* Transpile To <= ES5 */
+      /* transpile To <= ES5, then lint */
       {
         test: /\.(js|jsx)$/,
         exclude: path.resolve(__dirname, "node_modules"),
-        use: ["babel-loader"]
+        use: ["babel-loader", "eslint-loader"]
       },
 
       /* Load CSS */
