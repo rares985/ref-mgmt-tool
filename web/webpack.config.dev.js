@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -8,7 +7,7 @@ module.exports = {
 
   /* Where the bundle.js file will be created */
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, './dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -36,8 +35,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      filename: './dist/index.html',
-      inject: true,
+      template: './public/index.html',
     }),
   ],
   devServer: {

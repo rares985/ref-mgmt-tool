@@ -1,23 +1,25 @@
-import { InputAdornment, withStyles } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import { RemoveRedEye } from "@material-ui/icons";
-import PropTypes from "prop-types";
-import React, { Component } from "react";
+import { InputAdornment, withStyles } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { RemoveRedEye } from '@material-ui/icons';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 const HIDE_PASSWORD_DELAY_MS = 1500;
 
+/* eslint-disable no-unused-vars */
 const styles = theme => ({
   eye: {
-    cursor: "pointer"
-  }
+    cursor: 'pointer',
+  },
 });
+/* eslint-enable no-unused-vars */
 
 class MaskableTextField extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isPasswordMasked: true
+      isPasswordMasked: true,
     };
 
     this.togglePasswordMask = this.togglePasswordMask.bind(this);
@@ -30,13 +32,13 @@ class MaskableTextField extends Component {
     setTimeout(() => {
       if (!isPasswordMasked) {
         this.setState({
-          isPasswordMasked: true
+          isPasswordMasked: true,
         });
       }
     }, HIDE_PASSWORD_DELAY_MS);
 
     this.setState(prevState => ({
-      isPasswordMasked: !prevState.isPasswordMasked
+      isPasswordMasked: !prevState.isPasswordMasked,
     }));
   };
 
@@ -46,14 +48,14 @@ class MaskableTextField extends Component {
 
     return (
       <TextField
-        type={isPasswordMasked ? "password" : "text"}
+        type={isPasswordMasked ? 'password' : 'text'}
         {...classes}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
               <RemoveRedEye className={classes.eye} onClick={() => this.togglePasswordMask()} />
             </InputAdornment>
-          )
+          ),
         }}
       />
     );
@@ -61,9 +63,17 @@ class MaskableTextField extends Component {
 }
 
 MaskableTextField.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    autoComplete: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    disabled: PropTypes.bool,
+    error: PropTypes.bool,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+    value: PropTypes.oneOf([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.arrayOf]),
+  }).isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(MaskableTextField);

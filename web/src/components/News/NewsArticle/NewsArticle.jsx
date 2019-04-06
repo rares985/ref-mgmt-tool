@@ -1,49 +1,51 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import red from "@material-ui/core/colors/red";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Grid from "@material-ui/core/Grid";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import red from '@material-ui/core/colors/red';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Grid from '@material-ui/core/Grid';
 
+/* eslint-disable no-unused-vars */
 const styles = theme => ({
   card: {
-    maxWidth: 400
+    maxWidth: 400,
   },
   media: {
     height: 0,
-    paddingTop: "56.25%" // 16:9
+    paddingTop: '56.25%', // 16:9
   },
   actions: {
-    display: "flex"
+    display: 'flex',
   },
   expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   expandOpen: {
-    transform: "rotate(180deg)"
+    transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500]
-  }
+    backgroundColor: red[500],
+  },
 });
+/* eslint-enable no-unused-vars enable */
 
 class NewsArticle extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      expanded: false
+      expanded: false,
     };
 
     this.handleExpandClick = this.handleExpandClick.bind(this);
@@ -59,7 +61,7 @@ class NewsArticle extends Component {
 
     // TODO: Beautify this somehow..it looks horrible @est(30m) @low
     let avatarName = article.author.match(/\b\w/g) || [];
-    avatarName = ((avatarName.shift() || "") + (avatarName.pop() || "")).toUpperCase();
+    avatarName = ((avatarName.shift() || '') + (avatarName.pop() || '')).toUpperCase();
 
     return (
       <Grid item xs={size}>
@@ -101,8 +103,8 @@ NewsArticle.propTypes = {
     summary: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     date_added: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
-  }).isRequired
+    content: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default NewsArticle;
