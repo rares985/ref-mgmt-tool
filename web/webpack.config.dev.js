@@ -1,16 +1,16 @@
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   /* Entry point  */
-  entry: "./src/index.jsx",
+  entry: './src/index.jsx',
 
   /* Where the bundle.js file will be created */
   output: {
-    path: __dirname + "/dist",
-    publicPath: "/",
-    filename: "bundle.js"
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js',
   },
 
   module: {
@@ -18,35 +18,34 @@ module.exports = {
       /* transpile To <= ES5, then lint */
       {
         test: /\.(js|jsx)$/,
-        exclude: path.resolve(__dirname, "node_modules"),
-        use: ["babel-loader", "eslint-loader"]
+        exclude: path.resolve(__dirname, 'node_modules'),
+        use: ['babel-loader', 'eslint-loader'],
       },
 
       /* Load CSS */
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
 
   resolve: {
-    extensions: ["*", ".js", ".jsx"]
+    extensions: ['*', '.js', '.jsx'],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      filename: "./dist/index.html",
-      inject: true
-    })
+      filename: './dist/index.html',
+      inject: true,
+    }),
   ],
   devServer: {
     inline: true,
-    contentBase: "dist/",
+    contentBase: 'dist/',
     disableHostCheck: true,
     historyApiFallback: true,
     hot: true,
-    port: 8080
-  }
+    port: 8080,
+  },
 };
