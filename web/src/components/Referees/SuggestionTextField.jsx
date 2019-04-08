@@ -10,6 +10,10 @@ const UP_KEY_CODE = 38;
 const DOWN_KEY_CODE = 40;
 
 class SuggestionTextField extends React.Component {
+  static defaultProps = {
+    helperText: '',
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -84,7 +88,7 @@ class SuggestionTextField extends React.Component {
       state: { active, matching, show, userInput },
     } = this;
 
-    const { placeholder } = this.props;
+    const { placeholder, helperText } = this.props;
 
     let suggestionsListComponent;
 
@@ -93,7 +97,7 @@ class SuggestionTextField extends React.Component {
         suggestionsListComponent = (
           <List component="ul">
             {matching.map((suggestion, index) => (
-              <ListItem button selected={active === index} onClick={handleClick}>
+              <ListItem button selected={active === index} onClick={handleClick} key={suggestion}>
                 <ListItemText primary={suggestion} />
               </ListItem>
             ))}
@@ -111,12 +115,14 @@ class SuggestionTextField extends React.Component {
     return (
       <Fragment>
         <TextField
+          variant="filled"
           type="text"
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           value={userInput}
           placeholder={placeholder}
           autoFocus
+          helperText={helperText}
         />
         {suggestionsListComponent}
       </Fragment>
@@ -127,6 +133,7 @@ class SuggestionTextField extends React.Component {
 SuggestionTextField.propTypes = {
   suggestions: PropTypes.arrayOf(PropTypes.string).isRequired,
   placeholder: PropTypes.string.isRequired,
+  helperText: PropTypes.string,
 };
 
 export default SuggestionTextField;

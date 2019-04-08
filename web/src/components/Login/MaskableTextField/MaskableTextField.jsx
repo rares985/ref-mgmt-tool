@@ -1,18 +1,20 @@
+/* eslint-disable no-unused-vars */
 import { InputAdornment, withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { RemoveRedEye } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
 
-const HIDE_PASSWORD_DELAY_MS = 1500;
+import { HIDE_PASSWORD_DELAY_MS } from '../../../constants/configurable-constants';
 
-/* eslint-disable no-unused-vars */
 const styles = (theme) => ({
   eye: {
     cursor: 'pointer',
   },
 });
-/* eslint-enable no-unused-vars */
 
 class MaskableTextField extends Component {
   constructor(props) {
@@ -26,16 +28,17 @@ class MaskableTextField extends Component {
     this.timer = null;
   }
 
-  togglePasswordMask = () => {
+  maskPassword = () => {
     const { isPasswordMasked } = this.state;
+    if (!isPasswordMasked) {
+      this.setState({
+        isPasswordMasked: true,
+      });
+    }
+  };
 
-    setTimeout(() => {
-      if (!isPasswordMasked) {
-        this.setState({
-          isPasswordMasked: true,
-        });
-      }
-    }, HIDE_PASSWORD_DELAY_MS);
+  togglePasswordMask = () => {
+    setTimeout(this.maskPassword, HIDE_PASSWORD_DELAY_MS);
 
     this.setState((prevState) => ({
       isPasswordMasked: !prevState.isPasswordMasked,
@@ -53,7 +56,9 @@ class MaskableTextField extends Component {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <RemoveRedEye className={classes.eye} onClick={this.togglePasswordMask()} />
+              <IconButton aria-label="Vedeti parola" onClick={this.togglePasswordMask}>
+                {isPasswordMasked ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
             </InputAdornment>
           ),
         }}
@@ -77,3 +82,4 @@ MaskableTextField.propTypes = {
 };
 
 export default withStyles(styles)(MaskableTextField);
+/* eslint-enable no-unused-vars */

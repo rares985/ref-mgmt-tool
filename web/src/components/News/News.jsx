@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import NewsArticle from './NewsArticle/NewsArticle';
 
 const COL_SIZE = 12;
+
 /* eslint-disable max-len */
 class News extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class News extends React.Component {
     // TODO: Use different value for key, not index @est(1h) @done
     return (
       <Grid container spacing={24}>
-        {articles.map(item => (
+        {articles.map((item) => (
           <NewsArticle size={itemSize} article={item} key={uuid()} />
         ))}
       </Grid>

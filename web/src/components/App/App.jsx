@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Avatar from '@material-ui/core/Avatar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +11,7 @@ import Login from '../Login/Login';
 import Matches from '../Matches/Matches';
 import Referees from '../Referees/Referees';
 import News from '../News/News';
+import FrvLogo from '../../assets/frv_logo_no_bg.png';
 
 const NEWS_PAGE_ID = 0;
 const REFEREES_PAGE_ID = 1;
@@ -29,7 +31,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
     width: '100%',
@@ -54,6 +56,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div className={classes.root}>
           <AppBar position="static" color="default">
+            <Avatar alt="FRVolei_logo" src={FrvLogo} size="400x600" />
             <Tabs
               value={value}
               onChange={this.handleChange}

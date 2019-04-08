@@ -26,6 +26,15 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      /* Load images and fonts */
+      {
+        test: /\.(png|jpg|gif|eot|ttf|woff|woff2)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: './dist/assets/',
+        },
+      },
     ],
   },
 
