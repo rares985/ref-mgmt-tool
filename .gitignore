@@ -1,7 +1,61 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.{4}json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# JSLib / JSCover directory
+lib-cov
+
+# Istanbul coverage dir
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+
+# Node dependencies
 /node_modules/*
 /web/node_modules
 /api/node_modules/
+
+# Optional npm cache dir
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional node history
+.node_repl_history
+
+# dotenv env variables
+.env
+.env.test
+
+# Next/Nuxt
+.nuxt
+.next
+
+# npm pack output
+*.tgz
+
+# IDK?
 /.pnp
 .pnp.js
-/coverage
+
+# Build directory
 /build

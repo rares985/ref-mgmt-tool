@@ -20,12 +20,14 @@ class SuggestionTextField extends React.Component {
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { suggestions } = this.props;
 
-    const filtered = suggestions.filter(
-      suggestion => suggestion.toLowerCase().indexOf(event.currentTarget.value.toLowerCase()) > -1
-    );
+    const filter = function filt(s) {
+      return s.toLowerCase().indexOf(event.currentTarget.value.toLowerCase()) > -1;
+    };
+
+    const filtered = suggestions.filter(filter_func);
 
     this.setState({
       userInput: event.currentTarget.value,
@@ -35,7 +37,7 @@ class SuggestionTextField extends React.Component {
     });
   };
 
-  handleClick = event => {
+  handleClick = (event) => {
     this.setState({
       active: 0,
       matching: [],
@@ -44,7 +46,7 @@ class SuggestionTextField extends React.Component {
     });
   };
 
-  handleKeyDown = event => {
+  handleKeyDown = (event) => {
     const { active, filtered, matching } = this.state;
 
     switch (event.keyCode) {
@@ -100,7 +102,7 @@ class SuggestionTextField extends React.Component {
       } else {
         suggestionsListComponent = (
           <div className="no-suggestions">
-            <em>No suggestions, you`re on your own!</em>
+            <em>Nu exista sugestii!</em>
           </div>
         );
       }

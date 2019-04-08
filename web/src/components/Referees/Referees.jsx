@@ -19,7 +19,7 @@ class Referees extends React.Component {
         'Brasov',
         'Buzau',
         'Calarasi',
-        'Caras-severin',
+        'Caras-Severin',
         'Cluj',
         'Constanta',
         'Covasna',
@@ -40,7 +40,7 @@ class Referees extends React.Component {
         'Olt',
         'Prahova',
         'Salaj',
-        'Satu mare',
+        'Satu Mare',
         'Sibiu',
         'Suceava',
         'Teleorman',
@@ -50,6 +50,8 @@ class Referees extends React.Component {
         'Vilcea',
         'Vrancea',
       ],
+      lotSuggestions: ['A', 'B', 'IL', 'NEDIV', 'RETRAS'],
+      categorySuggestions: ['INT', 'R', 'I', 'II', 'III', 'IV'],
       query: 'Lorem ipsum dolor sit amet plmmmmmmmmmmmmmmmmmmmmmmm',
     };
   }
@@ -57,12 +59,17 @@ class Referees extends React.Component {
   render() {
     const { query } = this.state;
 
-    const { countySuggestions } = this.state;
+    const { countySuggestions, lotSuggestions, categorySuggestions } = this.state;
 
     return (
       <Grid container spacing={8}>
         <Grid item xs={3}>
           <SuggestionTextField suggestions={countySuggestions} placeholder="Alegeti judetul..." />
+          <SuggestionTextField suggestions={lotSuggestions} placeholder="Alegeti lotul..." />
+          <SuggestionTextField
+            suggestions={categorySuggestions}
+            placeholder="Alegeti categoria..."
+          />
         </Grid>
         <Grid item xs={9}>
           {query}
