@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 const HIDE_PASSWORD_DELAY_MS = 1500;
 
 /* eslint-disable no-unused-vars */
-const styles = theme => ({
+const styles = (theme) => ({
   eye: {
     cursor: 'pointer',
   },
@@ -37,7 +37,7 @@ class MaskableTextField extends Component {
       }
     }, HIDE_PASSWORD_DELAY_MS);
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isPasswordMasked: !prevState.isPasswordMasked,
     }));
   };
@@ -53,7 +53,7 @@ class MaskableTextField extends Component {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <RemoveRedEye className={classes.eye} onClick={() => this.togglePasswordMask()} />
+              <RemoveRedEye className={classes.eye} onClick={this.togglePasswordMask()} />
             </InputAdornment>
           ),
         }}

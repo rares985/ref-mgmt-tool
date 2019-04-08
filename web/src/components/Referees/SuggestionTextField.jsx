@@ -23,11 +23,11 @@ class SuggestionTextField extends React.Component {
   handleChange = (event) => {
     const { suggestions } = this.props;
 
-    const filter = function filt(s) {
+    const filterFunc = function filt(s) {
       return s.toLowerCase().indexOf(event.currentTarget.value.toLowerCase()) > -1;
     };
 
-    const filtered = suggestions.filter(filter_func);
+    const filtered = suggestions.filter(filterFunc);
 
     this.setState({
       userInput: event.currentTarget.value,
