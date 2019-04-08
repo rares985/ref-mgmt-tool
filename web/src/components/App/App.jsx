@@ -39,7 +39,7 @@ const styles = theme => ({
 
 class App extends React.Component {
   state = {
-    value: LOGIN_PAGE_ID,
+    value: REFEREES_PAGE_ID,
   };
 
   handleChange = (event, value) => {
