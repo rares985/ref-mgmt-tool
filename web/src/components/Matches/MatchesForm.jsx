@@ -24,7 +24,6 @@ function RefereesForm(props) {
         suggestions={genderSuggestions}
         placeholder={genderPlaceholder}
         label="Sex"
-        acceptRomanNumerals
       />
     </React.Fragment>
   );
