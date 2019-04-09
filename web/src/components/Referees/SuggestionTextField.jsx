@@ -51,14 +51,16 @@ class SuggestionTextField extends React.Component {
   };
 
   handleKeyDown = (event) => {
-    const { active, filtered, matching } = this.state;
+    const { active, matching } = this.state;
+    console.log(event.keyCode);
 
     switch (event.keyCode) {
+      // TODO: Fix enter event handler...doesn't set value for some reason @done
       case ENTER_KEY_CODE:
         this.setState({
           active: 0,
           show: false,
-          userInput: filtered[active],
+          userInput: matching[active],
         });
         break;
       case UP_KEY_CODE:
@@ -88,7 +90,7 @@ class SuggestionTextField extends React.Component {
       state: { active, matching, show, userInput },
     } = this;
 
-    const { placeholder, helperText } = this.props;
+    const { placeholder, label, helperText } = this.props;
 
     let suggestionsListComponent;
 
@@ -117,6 +119,7 @@ class SuggestionTextField extends React.Component {
         <TextField
           variant="filled"
           type="text"
+          label={label}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           value={userInput}
@@ -134,6 +137,7 @@ SuggestionTextField.propTypes = {
   suggestions: PropTypes.arrayOf(PropTypes.string).isRequired,
   placeholder: PropTypes.string.isRequired,
   helperText: PropTypes.string,
+  label: PropTypes.string.isRequired,
 };
 
 export default SuggestionTextField;

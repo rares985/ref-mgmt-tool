@@ -10,9 +10,17 @@ function RefereesForm(props) {
 
   return (
     <React.Fragment>
-      <SuggestionTextField suggestions={countySuggestions} placeholder={countyPlaceholders} />
-      <SuggestionTextField suggestions={lotSuggestions} placeholder={lotPlaceholders} />
-      <SuggestionTextField suggestions={categorySuggestions} placeholder={categoryPlaceholders} />
+      <SuggestionTextField
+        suggestions={countySuggestions}
+        placeholder={countyPlaceholders}
+        label="Judet"
+      />
+      <SuggestionTextField suggestions={lotSuggestions} placeholder={lotPlaceholders} label="Lot" />
+      <SuggestionTextField
+        suggestions={categorySuggestions}
+        placeholder={categoryPlaceholders}
+        label="Categorie"
+      />
     </React.Fragment>
   );
 }
