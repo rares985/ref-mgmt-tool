@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 module.exports = {
   ARTICLE_STUBS: [
     {
@@ -34,3 +35,4 @@ module.exports = {
     },
   ],
 };
+/* eslint-enable max-len */

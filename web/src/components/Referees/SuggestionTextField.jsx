@@ -4,14 +4,17 @@ import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
-const ENTER_KEY_CODE = 13;
-const UP_KEY_CODE = 38;
-const DOWN_KEY_CODE = 40;
+import {
+  ENTER_KEY_CODE,
+  UP_KEY_CODE,
+  DOWN_KEY_CODE,
+} from '../../constants/nonconfigurable-constants';
+import { toRomanNumeral } from '../../Utils/misc';
 
 class SuggestionTextField extends React.Component {
   static defaultProps = {
     helperText: '',
+    acceptRomanNumerals: false,
   };
 
   constructor(props) {
@@ -25,13 +28,27 @@ class SuggestionTextField extends React.Component {
   }
 
   handleChange = (event) => {
-    const { suggestions } = this.props;
+    const { suggestions, acceptRomanNumerals } = this.props;
 
-    const filterFunc = function filt(s) {
-      return s.toLowerCase().indexOf(event.currentTarget.value.toLowerCase()) > -1;
+    const currentInput = event.currentTarget.value.toLowerCase();
+
+    const filterMatches = function filt(s) {
+      const inputAsNumber = parseInt(currentInput, 10);
+      let inputAsRomanNumeral = '';
+      if (Number.isInteger(inputAsNumber)) {
+        inputAsRomanNumeral = toRomanNumeral(inputAsNumber).toLowerCase();
+      }
+
+      const normalMatch = s.toLowerCase().indexOf(currentInput) > -1;
+      const romanMatch = acceptRomanNumerals
+        ? s.toLowerCase().indexOf(inputAsRomanNumeral) > -1
+        : false;
+
+      return normalMatch || romanMatch;
     };
 
-    const filtered = suggestions.filter(filterFunc);
+    // FIXME: Input 1 matches 'IV', we do not want that @est(30m)
+    const filtered = suggestions.filter(filterMatches);
 
     this.setState({
       userInput: event.currentTarget.value,
@@ -52,7 +69,6 @@ class SuggestionTextField extends React.Component {
 
   handleKeyDown = (event) => {
     const { active, matching } = this.state;
-    console.log(event.keyCode);
 
     switch (event.keyCode) {
       // TODO: Fix enter event handler...doesn't set value for some reason @done
@@ -138,6 +154,7 @@ SuggestionTextField.propTypes = {
   placeholder: PropTypes.string.isRequired,
   helperText: PropTypes.string,
   label: PropTypes.string.isRequired,
+  acceptRomanNumerals: PropTypes.bool,
 };
 
 export default SuggestionTextField;

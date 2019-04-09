@@ -5,31 +5,18 @@ import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import { BrowserRouter } from 'react-router-dom';
 import Login from '../Login/Login';
 import Matches from '../Matches/Matches';
 import Referees from '../Referees/Referees';
 import News from '../News/News';
+import TabContainer from './TabContainer';
 import FrvLogo from '../../assets/frv_logo_no_bg.png';
 
 const NEWS_PAGE_ID = 0;
 const REFEREES_PAGE_ID = 1;
 const MATCHES_PAGE_ID = 2;
 const LOGIN_PAGE_ID = 3;
-
-function TabContainer(props) {
-  const { children } = props;
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 const styles = (theme) => ({
   root: {

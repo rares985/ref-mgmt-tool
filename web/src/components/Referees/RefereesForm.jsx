@@ -5,21 +5,22 @@ import SuggestionTextField from './SuggestionTextField';
 function RefereesForm(props) {
   const {
     suggestions: { countySuggestions, lotSuggestions, categorySuggestions },
-    placeholders: { countyPlaceholders, lotPlaceholders, categoryPlaceholders },
+    placeholders: { countyPlaceholder, lotPlaceholder, categoryPlaceholder },
   } = props;
 
   return (
     <React.Fragment>
       <SuggestionTextField
         suggestions={countySuggestions}
-        placeholder={countyPlaceholders}
+        placeholder={countyPlaceholder}
         label="Judet"
       />
-      <SuggestionTextField suggestions={lotSuggestions} placeholder={lotPlaceholders} label="Lot" />
+      <SuggestionTextField suggestions={lotSuggestions} placeholder={lotPlaceholder} label="Lot" />
       <SuggestionTextField
         suggestions={categorySuggestions}
-        placeholder={categoryPlaceholders}
+        placeholder={categoryPlaceholder}
         label="Categorie"
+        acceptRomanNumerals
       />
     </React.Fragment>
   );
@@ -32,9 +33,9 @@ RefereesForm.propTypes = {
     categorySuggestions: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   placeholders: PropTypes.shape({
-    countyPlaceholders: PropTypes.string.isRequired,
-    lotPlaceholders: PropTypes.string.isRequired,
-    categoryPlaceholders: PropTypes.string.isRequired,
+    countyPlaceholder: PropTypes.string.isRequired,
+    lotPlaceholder: PropTypes.string.isRequired,
+    categoryPlaceholder: PropTypes.string.isRequired,
   }).isRequired,
 };
 
