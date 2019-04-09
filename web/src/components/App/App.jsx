@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -26,63 +26,54 @@ const styles = (theme) => ({
   },
 });
 
-class App extends React.Component {
-  state = {
-    value: REFEREES_PAGE_ID,
-  };
+const App = (props) => {
+  const [value, setValue] = useState(NEWS_PAGE_ID);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+  const { classes } = props;
 
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <BrowserRouter>
-        <div className={classes.root}>
-          <AppBar position="static" color="default">
-            <Avatar alt="FRVolei_logo" src={FrvLogo} size="400x600" />
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="fullWidth"
-              scrollButtons="auto"
-            >
-              <Tab label="Stiri" />
-              <Tab label="Arbitri" />
-              <Tab label="Meciuri" />
-              <Tab label="Login" />
-            </Tabs>
-          </AppBar>
-          {value === NEWS_PAGE_ID && (
-            <TabContainer>
-              <News />
-            </TabContainer>
-          )}
-          {value === REFEREES_PAGE_ID && (
-            <TabContainer>
-              <Referees />
-            </TabContainer>
-          )}
-          {value === MATCHES_PAGE_ID && (
-            <TabContainer>
-              <Matches />
-            </TabContainer>
-          )}
-          {value === LOGIN_PAGE_ID && (
-            <TabContainer>
-              <Login />
-            </TabContainer>
-          )}
-        </div>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Avatar alt="FRVolei_logo" src={FrvLogo} size="400x600" />
+          <Tabs
+            value={value}
+            onChange={(event, val) => setValue(val)}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            scrollButtons="auto"
+          >
+            <Tab label="Stiri" />
+            <Tab label="Arbitri" />
+            <Tab label="Meciuri" />
+            <Tab label="Login" />
+          </Tabs>
+        </AppBar>
+        {value === NEWS_PAGE_ID && (
+          <TabContainer>
+            <News />
+          </TabContainer>
+        )}
+        {value === REFEREES_PAGE_ID && (
+          <TabContainer>
+            <Referees />
+          </TabContainer>
+        )}
+        {value === MATCHES_PAGE_ID && (
+          <TabContainer>
+            <Matches />
+          </TabContainer>
+        )}
+        {value === LOGIN_PAGE_ID && (
+          <TabContainer>
+            <Login />
+          </TabContainer>
+        )}
+      </div>
+    </BrowserRouter>
+  );
+};
 
 /* eslint-disable react/forbid-prop-types */
 App.propTypes = {
