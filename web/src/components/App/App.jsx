@@ -27,7 +27,7 @@ const styles = (theme) => ({
 });
 
 const App = (props) => {
-  const [value, setValue] = useState(NEWS_PAGE_ID);
+  const [value, setValue] = useState(MATCHES_PAGE_ID);
 
   const { classes } = props;
 

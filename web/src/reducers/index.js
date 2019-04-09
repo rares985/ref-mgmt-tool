@@ -11,6 +11,7 @@ import {
 } from '../constants/action-types';
 
 import { ARTICLE_STUBS } from '../stubs/article-stubs';
+import { MATCH_STUBS } from '../stubs/match-stubs';
 
 const initialState = {
   newsPage: {
@@ -30,7 +31,7 @@ const initialState = {
     error: null,
   },
   matchesPage: {
-    matches: [],
+    matches: MATCH_STUBS,
     loading: false,
     error: null,
   },

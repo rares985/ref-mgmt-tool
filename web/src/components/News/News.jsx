@@ -12,14 +12,17 @@ const ITEM_SIZE = Math.floor(COL_SIZE / DISPLAYED_PER_ROW);
 
 const mapStateToProps = (state) => ({
   articles: state.newsPage.articles,
+  loading: state.newsPage.loading,
+  error: state.newsPage.error,
 });
 
 /* eslint-disable no-unused-vars */
 const mapDispatchToProps = (dispatch) => ({});
-/* eslint-enable no-unused-vars */
 
 const News = (props) => {
-  const { articles } = props;
+  const { articles, loading, error } = props;
+  /* eslint-enable no-unused-vars */
+
   return (
     <Grid container spacing={24}>
       {articles.map((item) => (
@@ -39,6 +42,8 @@ News.propTypes = {
       content: PropTypes.string.isRequired,
     })
   ).isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default connect(

@@ -1,8 +1,17 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
 import RefereesForm from './RefereesForm';
 import { COUNTIES, LOTS, CATEGORIES } from '../../constants/configurable-constants';
 
+const mapStateToProps = (state) => ({
+  loading: state.refereesPage.loading,
+  error: state.refereesPage.error,
+});
+
+/* eslint-disable no-unused-vars */
+const mapDispatchToProps = (dispatch) => {};
+/* eslint-enable no-unused-vars */
 class Referees extends React.Component {
   constructor(props) {
     super(props);
@@ -38,4 +47,7 @@ class Referees extends React.Component {
   }
 }
 
-export default Referees;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Referees);
