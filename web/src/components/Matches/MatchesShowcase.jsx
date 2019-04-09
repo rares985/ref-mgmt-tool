@@ -11,7 +11,7 @@ import uuid from 'uuid';
 
 const CustomTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.indigo,
+    backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
   },
   body: {
@@ -29,8 +29,8 @@ const styles = (theme) => ({
     minWidth: 700,
   },
   row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
+    '&:nth-of-type(even)': {
+      backgroundColor: theme.palette.primary.light,
     },
   },
 });

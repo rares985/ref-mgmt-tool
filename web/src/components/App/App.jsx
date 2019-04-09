@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+
 import { BrowserRouter } from 'react-router-dom';
 import Login from '../Login/Login';
 import Matches from '../Matches/Matches';
 import Referees from '../Referees/Referees';
 import News from '../News/News';
 import TabContainer from './TabContainer';
-import FrvLogo from '../../assets/frv_logo_no_bg.png';
+import Navbar from './Navbar';
+import SizeableAvatar from './SizeableAvatar';
 
 const NEWS_PAGE_ID = 0;
 const REFEREES_PAGE_ID = 1;
@@ -24,6 +23,11 @@ const styles = (theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
+  tabsStyles: {
+    tabsIndicator: {
+      backgroundColor: '#ffffff',
+    },
+  },
 });
 
 const App = (props) => {
@@ -34,21 +38,9 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Avatar alt="FRVolei_logo" src={FrvLogo} size="400x600" />
-          <Tabs
-            value={value}
-            onChange={(event, val) => setValue(val)}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-            scrollButtons="auto"
-          >
-            <Tab label="Stiri" />
-            <Tab label="Arbitri" />
-            <Tab label="Meciuri" />
-            <Tab label="Login" />
-          </Tabs>
+        <AppBar position="static" color="primary">
+          <SizeableAvatar />
+          <Navbar value={value} onChange={(event, val) => setValue(val)} />
         </AppBar>
         {value === NEWS_PAGE_ID && (
           <TabContainer>
