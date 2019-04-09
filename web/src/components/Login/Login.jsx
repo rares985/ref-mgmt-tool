@@ -81,6 +81,13 @@ class Login extends React.Component {
     });
   };
 
+  /* TODO: Access levels:
+    0 - root (cel care aproba)
+    1 - proposer (cel care face proposals)
+    2 - arbitru (cel care are cont si sa isi vada profilul)
+    3 - public
+  */
+
   render() {
     const { classes } = this.props;
     const { email, password } = this.state;

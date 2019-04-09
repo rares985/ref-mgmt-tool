@@ -7,26 +7,33 @@ import {
   FETCH_NEWS_FAILURE,
   FETCH_REFEREES_BEGIN,
   FETCH_REFEREES_SUCCESS,
-  FETCH_REFEREES_FAILURE
-} from "../constants/action-types";
+  FETCH_REFEREES_FAILURE,
+} from '../constants/action-types';
+
+import { ARTICLE_STUBS } from '../stubs/article-stubs';
 
 const initialState = {
   newsPage: {
     loading: false,
     error: null,
-    articles: []
+    articles: ARTICLE_STUBS,
   },
   loginPage: {
     logged_in: false,
     logged_user: null,
     loading: false,
-    error: null
+    error: null,
   },
-  refereePage: {
+  refereesPage: {
     referees: [],
     loading: false,
-    error: null
-  }
+    error: null,
+  },
+  matchesPage: {
+    matches: [],
+    loading: false,
+    error: null,
+  },
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -36,8 +43,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         loginPage: {
           ...state.loginPage,
-          loading: true
-        }
+          loading: true,
+        },
       };
     case LOGIN_USER_SUCCESS:
       return {
@@ -46,8 +53,8 @@ const rootReducer = (state = initialState, action) => {
           ...state.loginPage,
           logged_in: true,
           logged_user: action.payload.logged_user,
-          loading: false
-        }
+          loading: false,
+        },
       };
     case LOGIN_USER_FAILURE:
       return {
@@ -55,16 +62,16 @@ const rootReducer = (state = initialState, action) => {
         loginPage: {
           ...state.loginPage,
           loading: false,
-          error: action.payload.error
-        }
+          error: action.payload.error,
+        },
       };
     case FETCH_NEWS_BEGIN:
       return {
         ...state,
         newsPage: {
           ...state.newsPage,
-          loading: true
-        }
+          loading: true,
+        },
       };
     case FETCH_NEWS_SUCCESS:
       return {
@@ -72,8 +79,8 @@ const rootReducer = (state = initialState, action) => {
         newsPage: {
           ...state.newsPage,
           loading: false,
-          articles: action.payload.articles
-        }
+          articles: action.payload.articles,
+        },
       };
     case FETCH_NEWS_FAILURE:
       return {
@@ -81,16 +88,16 @@ const rootReducer = (state = initialState, action) => {
         newsPage: {
           ...state.newsPage,
           loading: false,
-          error: action.payload.error
-        }
+          error: action.payload.error,
+        },
       };
     case FETCH_REFEREES_BEGIN:
       return {
         ...state,
         refereePage: {
           ...state.refereePage,
-          loading: true
-        }
+          loading: true,
+        },
       };
     case FETCH_REFEREES_SUCCESS:
       return {
@@ -98,8 +105,8 @@ const rootReducer = (state = initialState, action) => {
         refereePage: {
           ...state.refereePage,
           loading: false,
-          referees: action.payload.referees
-        }
+          referees: action.payload.referees,
+        },
       };
     case FETCH_REFEREES_FAILURE:
       return {
@@ -107,8 +114,8 @@ const rootReducer = (state = initialState, action) => {
         refereePage: {
           ...state.refereePage,
           loading: false,
-          error: action.payload.error
-        }
+          error: action.payload.error,
+        },
       };
     default:
       return state;

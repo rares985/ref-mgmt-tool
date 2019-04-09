@@ -8,6 +8,11 @@ function RefereesForm(props) {
     placeholders: { seasonPlaceholder, competitionPlaceholder, genderPlaceholder },
   } = props;
 
+  // TODO: Cautare dupa nr de meci
+  // TODO: Nr Meci
+  // TODO: Cautare dupa perioada
+  // TODO: Cautare dupa locatie
+
   return (
     <React.Fragment>
       <SuggestionTextField
