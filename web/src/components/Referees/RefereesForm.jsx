@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import SuggestionTextField from './SuggestionTextField';
+import SuggestionTextField from '../SuggestionTextField/SuggestionTextField';
 
 function RefereesForm(props) {
   const {

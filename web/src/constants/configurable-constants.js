@@ -51,4 +51,26 @@ module.exports = {
     'Vilcea',
     'Vrancea',
   ],
+
+  GENDERS: ['M', 'F'],
+  SEASONS: [
+    '2012-2013',
+    '2013-2014',
+    '2014-2015',
+    '2015-2016',
+    '2016-2017',
+    '2017-2018',
+    '2018-2019',
+  ],
+  COMPETITIONS: [
+    'A1',
+    'Cupa Romaniei',
+    'A2 Vest',
+    'A2 Est',
+    'Juniori',
+    'Cadeti',
+    'Sperante',
+    'Minivolei',
+    'Amicale',
+  ],
 };
