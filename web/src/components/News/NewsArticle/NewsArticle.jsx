@@ -12,8 +12,10 @@ import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 
+import { getInitials } from '../../../Utils/strmanip';
+
 /* eslint-disable no-unused-vars */
-const styles = theme => ({
+const styles = (theme) => ({
   card: {
     maxWidth: 400,
   },
@@ -52,16 +54,14 @@ class NewsArticle extends Component {
   }
 
   handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
+    this.setState((state) => ({ expanded: !state.expanded }));
   };
 
   render() {
     const { article, size } = this.props;
     const { expanded } = this.state;
 
-    // TODO: Beautify this somehow..it looks horrible @est(30m) @low
-    let avatarName = article.author.match(/\b\w/g) || [];
-    avatarName = ((avatarName.shift() || '') + (avatarName.pop() || '')).toUpperCase();
+    const avatarName = getInitials(article.author);
 
     return (
       <Grid item xs={size}>

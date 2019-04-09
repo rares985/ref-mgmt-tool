@@ -53,7 +53,6 @@ class News extends React.Component {
     const { articles, displayedPerRow } = this.state;
     const itemSize = Math.floor(COL_SIZE / displayedPerRow);
 
-    // TODO: Use different value for key, not index @est(1h) @done
     return (
       <Grid container spacing={24}>
         {articles.map((item) => (
