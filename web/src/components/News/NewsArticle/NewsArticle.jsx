@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
 
 import { getInitials } from '../../../Utils/strmanip';
 
@@ -42,59 +43,43 @@ const styles = (theme) => ({
 });
 /* eslint-enable no-unused-vars enable */
 
-class NewsArticle extends Component {
-  constructor(props) {
-    super(props);
+const NewsArticle = (props) => {
+  const [expanded, setExpanded] = useState(false);
 
-    this.state = {
-      expanded: false,
-    };
+  const { article, size } = props;
+  const avatarName = getInitials(article.author);
 
-    this.handleExpandClick = this.handleExpandClick.bind(this);
-  }
-
-  handleExpandClick = () => {
-    this.setState((state) => ({ expanded: !state.expanded }));
-  };
-
-  render() {
-    const { article, size } = this.props;
-    const { expanded } = this.state;
-
-    const avatarName = getInitials(article.author);
-
-    return (
-      <Grid item xs={size}>
-        <Card>
-          <CardHeader
-            avatar={<Avatar aria-label={article.author}>{avatarName}</Avatar>}
-            title={article.title}
-            subheader={article.date_added}
-          />
+  return (
+    <Grid item xs={size}>
+      <Card>
+        <CardHeader
+          avatar={<Avatar aria-label={article.author}>{avatarName}</Avatar>}
+          title={article.title}
+          subheader={article.date_added}
+        />
+        <CardContent>
+          <Typography component="p">{article.summary}</Typography>
+        </CardContent>
+        <CardActions>
+          <IconButton
+            onClick={setExpanded(!expanded)}
+            aria-expanded={expanded}
+            aria-label="Show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography component="p">{article.summary}</Typography>
+            <Typography>
+              <Typography paragraph>{article.content}</Typography>
+            </Typography>
           </CardContent>
-          <CardActions>
-            <IconButton
-              onClick={this.handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="Show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography>
-                <Typography paragraph>{article.content}</Typography>
-              </Typography>
-            </CardContent>
-          </Collapse>
-        </Card>
-      </Grid>
-    );
-  }
-}
+        </Collapse>
+      </Card>
+    </Grid>
+  );
+};
 
 NewsArticle.propTypes = {
   size: PropTypes.number.isRequired,
@@ -107,4 +92,4 @@ NewsArticle.propTypes = {
   }).isRequired,
 };
 
-export default NewsArticle;
+export default withStyles(NewsArticle);

@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { InputAdornment, withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import { RemoveRedEye } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Visibility from '@material-ui/icons/Visibility';
