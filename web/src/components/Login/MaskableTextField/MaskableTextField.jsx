@@ -1,70 +1,43 @@
-/* eslint-disable no-unused-vars */
-import { InputAdornment, withStyles } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 
 import { HIDE_PASSWORD_DELAY_MS } from '../../../constants/configurable-constants';
 
-const styles = (theme) => ({
-  eye: {
-    cursor: 'pointer',
-  },
-});
+const MaskableTextField = (props) => {
+  const [isMasked, setMasked] = useState(true);
+  const { classes } = props;
 
-class MaskableTextField extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPasswordMasked: true,
-    };
-
-    this.togglePasswordMask = this.togglePasswordMask.bind(this);
-    this.timer = null;
-  }
-
-  maskPassword = () => {
-    const { isPasswordMasked } = this.state;
-    if (!isPasswordMasked) {
-      this.setState({
-        isPasswordMasked: true,
-      });
-    }
-  };
-
-  togglePasswordMask = () => {
-    setTimeout(this.maskPassword, HIDE_PASSWORD_DELAY_MS);
-
-    this.setState((prevState) => ({
-      isPasswordMasked: !prevState.isPasswordMasked,
-    }));
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { isPasswordMasked } = this.state;
-
-    return (
-      <TextField
-        type={isPasswordMasked ? 'password' : 'text'}
-        {...classes}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton aria-label="Vedeti parola" onClick={this.togglePasswordMask}>
-                {isPasswordMasked ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-    );
-  }
-}
+  return (
+    <TextField
+      type={isMasked ? 'password' : 'text'}
+      {...classes}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="Vedeti parola"
+              onClick={() => {
+                /* Invert password mask */
+                setMasked(!isMasked);
+                setTimeout(() => {
+                  /* At timeout, forcefully hide password */
+                  setMasked(true);
+                }, HIDE_PASSWORD_DELAY_MS);
+              }}
+            >
+              {isMasked ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
+  );
+};
 
 MaskableTextField.propTypes = {
   classes: PropTypes.shape({
@@ -80,5 +53,4 @@ MaskableTextField.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(MaskableTextField);
-/* eslint-enable no-unused-vars */
+export default MaskableTextField;

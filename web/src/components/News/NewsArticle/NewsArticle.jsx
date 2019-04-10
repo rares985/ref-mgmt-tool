@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -46,14 +47,18 @@ const styles = (theme) => ({
 const NewsArticle = (props) => {
   const [expanded, setExpanded] = useState(false);
 
-  const { article, size } = props;
+  const { classes, article, size } = props;
   const avatarName = getInitials(article.author);
 
   return (
     <Grid item xs={size}>
-      <Card>
+      <Card className={classes.card}>
         <CardHeader
-          avatar={<Avatar aria-label={article.author}>{avatarName}</Avatar>}
+          avatar={
+            <Avatar className={classes.avatar} aria-label={article.author}>
+              {avatarName}
+            </Avatar>
+          }
           title={article.title}
           subheader={article.date_added}
         />
@@ -62,7 +67,10 @@ const NewsArticle = (props) => {
         </CardContent>
         <CardActions>
           <IconButton
-            onClick={setExpanded(!expanded)}
+            className={classnames(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={() => setExpanded(!expanded)}
             aria-expanded={expanded}
             aria-label="Show more"
           >
@@ -82,6 +90,8 @@ const NewsArticle = (props) => {
 };
 
 NewsArticle.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  classes: PropTypes.object.isRequired,
   size: PropTypes.number.isRequired,
   article: PropTypes.shape({
     author: PropTypes.string.isRequired,
@@ -92,4 +102,4 @@ NewsArticle.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(NewsArticle);
+export default withStyles(styles)(NewsArticle);

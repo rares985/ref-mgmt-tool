@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'ramda';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,12 +14,13 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import SHA3 from 'sha3';
 import MaskableTextField from './MaskableTextField/MaskableTextField';
+import { LoginUser } from '../../actions/index';
 
-const styles = function styles(theme) {
+const styles = (theme) => {
   return {
     main: {
       width: 'auto',
-      display: 'block', // Fix IE 11 issue.
+      display: 'block',
       marginLeft: theme.spacing.unit * 3,
       marginRight: theme.spacing.unit * 3,
       [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -39,7 +42,7 @@ const styles = function styles(theme) {
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      width: '100%',
       marginTop: theme.spacing.unit,
     },
     submit: {
@@ -47,6 +50,18 @@ const styles = function styles(theme) {
     },
   };
 };
+
+const mapStateToProps = (state) => ({
+  logged_in: state.loginPage.logged_in,
+  loading: state.loginPage.loading,
+  error: state.loginPage.error,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (request) => {
+    dispatch(LoginUser(request));
+  },
+});
 
 class Login extends React.Component {
   constructor(props) {
@@ -56,22 +71,21 @@ class Login extends React.Component {
       email: '',
       password: '',
     };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
     const sha3 = new SHA3(256);
-    const { userEmail, password } = this.state;
-    /* eslint-disable no-unused-vars */
+    const { email, password } = this.state;
+    const { onSubmit } = this.props;
+
     const request = {
-      email: userEmail,
+      email,
       password: sha3.update(password).digest('hex'),
     };
-    /* eslint-disable no-unused-vars */
+
+    onSubmit(request);
   };
 
   handleChange = (event) => {
@@ -142,7 +156,14 @@ class Login extends React.Component {
 /* eslint-disable react/forbid-prop-types */
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 /* eslint-enable react/forbid-prop-types */
 
-export default withStyles(styles)(Login);
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withStyles(styles)
+)(Login);
