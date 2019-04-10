@@ -1,0 +1,15 @@
+
+Ideas for future:
+  ☐ Migrate to ImmutableJS
+  ☐ Use RamdaJS where possible
+  ☐ Create tests...
+
+
+Optimize loading:
+  ☐ Inspect with why-did-you-update
+  ☐ PureComponents where possible
+  ☐ Suspense
+  ☐ React.memo
+  ☐ shouldComponentUpdate
+  ☐ Remove closures where possible
+
