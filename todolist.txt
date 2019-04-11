@@ -15,16 +15,5 @@ Ideas for future:
     Individual:
       ☐ Connect components to Redux
       ☐ Make as many components functional as possible
-  API:
-    ☐ Create connection to DB
-    ☐ Properly handle requests
-    ☐ Gzip with Express and ship gzipped file
-    ☐ Server-Side rendering
-    ☐ Find out how to ship files, images via FTP
-  DB:
-    ☐ Create schema with mocky data
-    ☐ Normalize DB NF1
-    ☐ Normalize DB NF2
-    ☐ Normalize DB NF3
 
 

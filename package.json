@@ -7,7 +7,6 @@
     "test": "jest",
     "start": "webpack-dev-server --mode development --open --config ./webpack.config.dev.js",
     "build": "webpack --mode production --config ./webpack.config.prod.js",
-    "pretest": "./node_modules/.bin/eslint --ignore-path ./.eslintignore",
     "eslint-check": "eslint --print-config . | eslint-config-prettier-check"
   },
   "keywords": [],
