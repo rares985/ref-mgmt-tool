@@ -1,7 +1,7 @@
 
 Ideas for future:
   Web:
-    ☐ Migrate to ImmutableJS
+    ✘ Migrate to ImmutableJS @cancelled(19-04-11 12:13)
     ☐ Use RamdaJS where possible
     ☐ Create tests...
     Optimize:
@@ -12,6 +12,9 @@ Ideas for future:
       ☐ shouldComponentUpdate
       ☐ Remove closures where possible
       ☐ webpack chunks
+    Individual:
+      ☐ Connect components to Redux
+      ☐ Make as many components functional as possible
   API:
     ☐ Create connection to DB
     ☐ Properly handle requests
