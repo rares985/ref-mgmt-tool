@@ -20,7 +20,7 @@ const styles = (theme) => {
   return {
     main: {
       width: 'auto',
-      display: 'block',
+      display: 'block', // Fix IE 11 issue.
       marginLeft: theme.spacing.unit * 3,
       marginRight: theme.spacing.unit * 3,
       [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -42,7 +42,7 @@ const styles = (theme) => {
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%',
+      width: '100%', // Fix IE 11 issue.
       marginTop: theme.spacing.unit,
     },
     submit: {
