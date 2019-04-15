@@ -3,6 +3,9 @@
 This project is a website whose purpose which allows for the organization and
 allocation of referees to matches.
 
+[![Build Status](https://travis-ci.org/rares985/rmt-web.svg?branch=master)](https://travis-ci.org/rares985/rmt-web)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Project structure
 
 This repository contains both the front-end and the back-end of the application.

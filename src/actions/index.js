@@ -34,17 +34,14 @@ export const LoginUser = (request) => {
   const url = 'localhost:3001/api/login';
   return (dispatch) => {
     dispatch(LoginUserBegin());
-    console.log(request);
     axios
       .get(url, request)
       // eslint-disable-next-line no-unused-vars
       .then((res) => {
         dispatch(LoginUserSuccess());
-        console.log('Dispatched login_user_success');
       })
       .catch((err) => {
         dispatch(LoginUserFailure(err.error));
-        console.log('Dispatched login_user_err');
       });
   };
 };
