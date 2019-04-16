@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import uuid from 'uuid';
 
 const styles = (theme) => ({
   root: {
@@ -65,6 +66,7 @@ const Navbar = (props) => {
           disableRipple
           classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
           label={item}
+          key={uuid()}
         />
       ))}
       ;
@@ -75,7 +77,8 @@ const Navbar = (props) => {
 Navbar.propTypes = {
   value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-  classes: PropTypes.node.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Navbar);

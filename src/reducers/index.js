@@ -8,6 +8,9 @@ import {
   FETCH_REFEREES_BEGIN,
   FETCH_REFEREES_SUCCESS,
   FETCH_REFEREES_FAILURE,
+  FETCH_MATCHES_BEGIN,
+  FETCH_MATCHES_SUCCESS,
+  FETCH_MATCHES_FAILURE,
 } from '../constants/action-types';
 
 import { ARTICLE_STUBS } from '../stubs/article-stubs';
@@ -118,6 +121,34 @@ const rootReducer = (state = initialState, action) => {
           error: action.payload.error,
         },
       };
+    case FETCH_MATCHES_FAILURE:
+      return {
+        ...state,
+        matchesPage: {
+          ...state.matchesPage,
+          loading: false,
+          error: action.payload.error,
+        },
+      };
+    case FETCH_MATCHES_BEGIN:
+      return {
+        ...state,
+        matchesPage: {
+          ...state.matchesPage,
+          loading: true,
+          error: null,
+        },
+      };
+    case FETCH_MATCHES_SUCCESS:
+      return {
+        ...state,
+        matchesPage: {
+          matches: action.payload.matches,
+          loading: false,
+          error: null,
+        },
+      };
+
     default:
       return state;
   }

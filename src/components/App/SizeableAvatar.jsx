@@ -19,7 +19,8 @@ const SizeableAvatar = (props) => {
 };
 
 SizeableAvatar.propTypes = {
-  classes: PropTypes.node.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(SizeableAvatar);

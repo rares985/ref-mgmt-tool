@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import MatchesForm from './MatchesForm';
 import MatchesShowcase from './MatchesShowcase';
+import { FetchMatches } from '../../actions/index';
 import { SEASONS, COMPETITIONS, GENDERS } from '../../constants/configurable-constants';
 
 const mapStateToProps = (state) => ({
@@ -12,10 +13,17 @@ const mapStateToProps = (state) => ({
   error: state.matchesPage.error,
 });
 
-/* eslint-disable no-unused-vars */
-const mapDispatchToProps = (dispatch) => {};
+const mapDispatchToProps = (dispatch) => ({
+  onFetchMatches: (request) => {
+    dispatch(FetchMatches(request));
+  },
+});
 
 class Matches extends React.Component {
+  static defaultProps = {
+    error: null,
+  };
+
   constructor(props) {
     super(props);
 
@@ -34,9 +42,15 @@ class Matches extends React.Component {
     };
   }
 
+  onFetchMatches = () => {
+    const request = { msg: 'Dispatched onFetchMatches' };
+    const { onFetchMatches } = this.props;
+    onFetchMatches(request);
+  };
+
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { matches, loading, error } = this.props;
-    /* eslint-enable no-unused-vars */
 
     // eslint-disable-next-line no-unused-vars
     const { suggestions, query, placeholders } = this.state;
@@ -55,8 +69,9 @@ class Matches extends React.Component {
 }
 
 Matches.propTypes = {
+  onFetchMatches: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   matches: PropTypes.arrayOf(
     PropTypes.shape({
       matchNumber: PropTypes.number.isRequired,
